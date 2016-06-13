@@ -86,6 +86,7 @@ module.exports = class ConfigService {
       sRestoreTicks: 10, // Amount of time until a cell's collision restores AFTER splitting
       showbmessage: 0, // Notifys you if a banned player tried to join (0 = off [default]) 1 = on
       splitSpeed: 130, // Splitting speed
+      autoSplitSpeed: 350, // The speed of autosplits when playerMaxMass is reached
       showjlinfo: 0, // Notifys you if a player has left or joined (0 = off [default]) 1 = on
       ejectvspeed: 120, // How far an ejected virus (from w) shoots
       playerSafeSpawn: 1, // Makes sure players dont spawn near, inside, or on top of one another
