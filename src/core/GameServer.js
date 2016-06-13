@@ -771,7 +771,7 @@ beforeq(player) {
       // Check if cells nearby
       let list = this.getCellsInRange(cell);
       list.forEach((check)=> {
-        if (check.cellType === 0 && (client != check.owner) && (cell.mass < check.mass * 1.25) && this.config.playerRecombineTime !== 0) { //extra check to make sure popsplit works by retslac
+        if (check.cellType === 0 && (client != check.owner) && (cell.mass < check.mass * 1.50) && this.config.playerRecombineTime !== 0) { //extra check to make sure popsplit works by retslac
           check.inRange = false;
           return;
         }
