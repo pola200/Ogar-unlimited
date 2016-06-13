@@ -157,11 +157,19 @@ PlayerCell.prototype.calcMove = function (x2, y2, gameServer) {
             
 				        var maxMove = Math.max(Math.ceil(Math.max(r,r1) / 2), 360); //for smaller cells use push out speed 360, for bigger cells add some speed
                 var move = Math.min(overlap * cell.mass / (this.mass + cell.mass), maxMove); //big cells push harder against smaller cells
-                x1 = x1 + (move * Math.sin(newAngle)) >> 0;
-                y1 = y1 + (move * Math.cos(newAngle)) >> 0;
-            }
-        }
-    }
+                  if(Math.random() > 0.5) {
+                    //cells switch order:
+                    x1 = x1 + (move * Math.sin(newAngle)) >> 0;
+                    y1 = y1 + (move * Math.cos(newAngle)) >> 0;
+                      }
+                  else {
+                    //cells don't switch order:
+                    xd += (move * Math.sin(newAngle));
+                    yd += (move * Math.cos(newAngle));
+                  }
+              }
+          }
+      }
   }
   var xSave = this.position.x;
   var ySave = this.position.y;
