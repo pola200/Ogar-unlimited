@@ -74,7 +74,7 @@ module.exports = class Physics {
       split.setMoveEngineData(splitSpeed, 40, 0.87); // set it to 45 if 40 is bad
       split.calcMergeTime(gameServer.config.playerRecombineTime);
       split.ignoreCollision = true;
-      split.restoreCollisionTicks = gameServer.config.cRestoreTicks; //vanilla agar.io = 10
+      split.restoreCollisionTicks = gameServer.config.sRestoreTicks; //vanilla agar.io = 10
 
       // Add to moving cells list
       gameServer.addNode(split, "moving");
