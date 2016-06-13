@@ -1996,7 +1996,7 @@ game.consoleService.execCommand("update", split);
     newCell.restoreCollisionTicks = 25;
     newCell.calcMergeTime(this.config.playerRecombineTime);
     newCell.ignoreCollision = true; // Remove collision checks
-    newCell.restoreCollisionTicks = this.config.cRestoreTicks; //vanilla agar.io = 10
+    newCell.restoreCollisionTicks = this.config.sRestoreTicks; //vanilla agar.io = 10
     // Add to moving cells list
     this.addNode(newCell, "moving");
   }
