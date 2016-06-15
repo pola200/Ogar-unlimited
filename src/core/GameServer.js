@@ -1331,9 +1331,12 @@ onWVerify(client) {
         }
 
         let angle = utilities.getAngleFromClientToCell(client, cell);
+        
+        // Randomize angle
+        angle += (Math.random() * 0.1) - 0.05;
 
         // Get starting position
-        let size = cell.getSize() + 7;
+        let size = cell.getSize() + 0.2;
         let startPos = {
           x: cell.position.x + ((size + this.config.ejectMass) * Math.sin(angle)),
           y: cell.position.y + ((size + this.config.ejectMass) * Math.cos(angle))
@@ -1346,7 +1349,7 @@ onWVerify(client) {
           cell.mass -= this.config.virusmassloss;
         }
         // Randomize angle
-        angle += (Math.random() * .7) - .15;
+        angle += (Math.random() * 0.6) - 0.3;
 
         // Create cell
         let ejected = undefined;
@@ -1354,10 +1357,10 @@ onWVerify(client) {
         else ejected = new Entity.Virus(this.world.getNextNodeId(), null, startPos, this.config.ejectMass, this);
         ejected.setAngle(angle);
         if (this.config.ejectvirus === 1) {
-          ejected.setMoveEngineData(this.config.ejectvspeed, 40, 0.91);
+          ejected.setMoveEngineData(this.config.ejectvspeed, 40, 0.88);
           ejected.par = client;
         } else {
-          ejected.setMoveEngineData(this.config.ejectSpeed, 40, 0.91);
+          ejected.setMoveEngineData(this.config.ejectSpeed, 40, 0.88);
         }
 
         if (this.config.randomEjectMassColor === 1) {
@@ -1401,9 +1404,12 @@ onWVerify(client) {
           }
 
           let angle = utilities.getAngleFromClientToCell(client, cell);
+          
+          // Randomize angle
+          angle += (Math.random() * 0.1) - 0.05;
 
           // Get starting position
-          let size = cell.getSize() + 7; //add speed of playercell
+          let size = cell.getSize() + 0.2; //add speed of playercell
           let startPos = {
             x: cell.position.x + ((size + this.config.ejectMass) * Math.sin(angle)),
             y: cell.position.y + ((size + this.config.ejectMass) * Math.cos(angle))
@@ -1424,7 +1430,7 @@ onWVerify(client) {
             cell.mass -= this.config.virusmassloss;
           }
           // Randomize angle
-          angle += (Math.random() * .7) - .15;
+          angle += (Math.random() * 0.6) - 0.3;
 
           // Create cell
           let ejected = undefined;
@@ -1434,10 +1440,10 @@ onWVerify(client) {
           
           // Set ejectspeed to "60" in config for best results
           if (this.config.ejectvirus == 1) {
-            ejected.setMoveEngineData(this.config.ejectvspeed, 40, 0.91);
+            ejected.setMoveEngineData(this.config.ejectvspeed, 40, 0.88);
 
           } else {
-            ejected.setMoveEngineData(this.config.ejectSpeed, 40, 0.91);
+            ejected.setMoveEngineData(this.config.ejectSpeed, 40, 0.88);
           }
           if (this.config.ejectvirus == 1) {
             ejected.par = client;
