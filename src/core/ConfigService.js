@@ -88,6 +88,7 @@ module.exports = class ConfigService {
       splitMult: 0.5, // What defines pushback, cell squishing, strength of small cells, snappiness, etc. NOTE: only works with splitversion set to 0
       splitSpeed: 130, // Splitting speed
       splitDistance: 0.87, // How far your cell travels after splitting
+      wDistance: 0.88, // How far your w's travel after shooting them
       autoSplitSpeed: 350, // The speed of autosplits when playerMaxMass is reached
       showjlinfo: 0, // Notifys you if a player has left or joined (0 = off [default]) 1 = on
       ejectvspeed: 120, // How far an ejected virus (from w) shoots
