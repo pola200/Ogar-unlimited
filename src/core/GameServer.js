@@ -1357,10 +1357,10 @@ onWVerify(client) {
         else ejected = new Entity.Virus(this.world.getNextNodeId(), null, startPos, this.config.ejectMass, this);
         ejected.setAngle(angle);
         if (this.config.ejectvirus === 1) {
-          ejected.setMoveEngineData(this.config.ejectvspeed, 40, 0.88);
+          ejected.setMoveEngineData(this.config.ejectvspeed, 40, this.config.wDistance);
           ejected.par = client;
         } else {
-          ejected.setMoveEngineData(this.config.ejectSpeed, 40, 0.88);
+          ejected.setMoveEngineData(this.config.ejectSpeed, 40, this.config.wDistance);
         }
 
         if (this.config.randomEjectMassColor === 1) {
@@ -1440,10 +1440,10 @@ onWVerify(client) {
           
           // Set ejectspeed to "60" in config for best results
           if (this.config.ejectvirus == 1) {
-            ejected.setMoveEngineData(this.config.ejectvspeed, 40, 0.88);
+            ejected.setMoveEngineData(this.config.ejectvspeed, 40, this.config.wDistance);
 
           } else {
-            ejected.setMoveEngineData(this.config.ejectSpeed, 40, 0.88);
+            ejected.setMoveEngineData(this.config.ejectSpeed, 40, this.config.wDistance);
           }
           if (this.config.ejectvirus == 1) {
             ejected.par = client;
