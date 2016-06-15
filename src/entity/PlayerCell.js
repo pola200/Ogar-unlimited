@@ -128,7 +128,7 @@ PlayerCell.prototype.calcMove = function (x2, y2, gameServer) {
         var c2Speed = cell.getSpeed();
       
         // TODO: need to simplify mult
-        var mult = this.config.splitMult; //pushback, cell squishing, strength of small cells, snappiness, etc.
+        var mult = config.splitMult; //pushback, cell squishing, strength of small cells, snappiness, etc.
 
         if (config.splitversion == 1) {
           var mult = c1Speed / c2Speed / 2;
