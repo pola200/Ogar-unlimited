@@ -71,7 +71,7 @@ module.exports = class Physics {
 
       var splitSpeed = gameServer.config.splitSpeed + (split.getSpeed() * 3 / 2); //70 * Math.max(Math.log10(newMass) - 2.2, 1); //for smaller cells use splitspeed 150, for bigger cells add some speed //splitSpeed = 70 + (split.getSpeed() + 10);
       //split.setMoveEngineData(splitSpeed, 32, 0.85); //vanilla agar.io = 130, 32, 0.85
-      split.setMoveEngineData(splitSpeed, 40, 0.87); // set it to 45 if 40 is bad
+      split.setMoveEngineData(splitSpeed, 40, this.config.splitDistance); // set it to 45 if 40 is bad
       split.calcMergeTime(gameServer.config.playerRecombineTime);
       split.ignoreCollision = true;
       split.restoreCollisionTicks = gameServer.config.sRestoreTicks; //vanilla agar.io = 10
