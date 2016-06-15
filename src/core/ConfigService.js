@@ -87,6 +87,7 @@ module.exports = class ConfigService {
       showbmessage: 0, // Notifys you if a banned player tried to join (0 = off [default]) 1 = on
       splitMult: 0.5, // What defines pushback, cell squishing, strength of small cells, snappiness, etc. NOTE: only works with splitversion set to 0
       splitSpeed: 130, // Splitting speed
+      splitDistance: 0.87, // How far your cell travels after splitting
       autoSplitSpeed: 350, // The speed of autosplits when playerMaxMass is reached
       showjlinfo: 0, // Notifys you if a player has left or joined (0 = off [default]) 1 = on
       ejectvspeed: 120, // How far an ejected virus (from w) shoots
