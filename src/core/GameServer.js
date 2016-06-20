@@ -811,7 +811,7 @@ beforeq(player) {
         // Auto move is done
         check.moveDone(this);
         // Remove cell from list
-        this.getWorld().removeMovingNode(check);
+        this.getWorld().removeMovingNode(check.getId());
       }
     });
   }
