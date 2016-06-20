@@ -59,6 +59,7 @@ https://github.com/AJS-development/Ogar-unlimited/issues/638
  31. client configs
  32. language support
  33. tutorial
+ 34. quadrants
  
 ### Note:
 Please note that this is updated very frequently and you should check for updates every week. I added an update system but It needs to be initialized by you (because I don't think it is the right thing to do, updating without your consent). Also you may copy this and modify it just please give some credit to the hard working dev team, that is all I care. Another note is that I am sometimes terrible in my grammar (I still cannot spell potato out loud). If there is an issue, please notify me. If there is something you want in this, just make a pull request.
@@ -245,5 +246,6 @@ Just make a pull request or make your own copy
 10. client config system
 11. language support system
 12. tutorial system
+13. quadrants
 
 #####anything else, if you improved it, you dont have to give us credit, or else if you just copied, you must give us credit
