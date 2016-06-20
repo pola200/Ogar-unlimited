@@ -533,7 +533,26 @@ this.checkTick = 40;
     this.centerPos.x = X / len;
     this.centerPos.y = Y / len;
   };
-
+getQuadrant(gameServer) { // Players quads are different and also factor in their viewboxes
+  var x = this.centerPos.x;
+  var y = this.centerPos.y;
+  var config = gameServer.config
+  var borderH = Math.round((config.borderBottom + config.borderTop) / 2);
+  var borderV = Math.round((config.borderRight + config.borderLeft) / 2);
+  var xbuffer = this.sightRangeX; // it is so that at the border of the quadrant, you can see other quadrants 
+  var ybuffer = this.sightRangeY; // but if in the middle, it would only loop through the players quadrant
+  if (x > borderV + xbuffer && y > borderH + ybuffer) {
+    return 4;
+  } else if (x > borderV + xbuffer && y <= borderH - ybuffer) {
+    return 1;
+  } else if (x <= borderV - xbuffer && y > borderH + ybuffer) {
+    return 3;
+  } else if (x <= borderV - xbuffer && y <= borderH - ybuffer) {
+    return 2;
+  } else {
+    return false;
+  }
+};
   calcViewBox() {
     if (this.spectate) {
       // Spectate mode
@@ -553,10 +572,10 @@ this.checkTick = 40;
     this.viewBox.height = this.sightRangeY;
 
     var newVisible = [];
-
+var quad = this.getQuadrant(this.gameServer);
     this.gameServer.getWorld().getNodes().forEach((node)=> {
       if (!node) return;
-
+if (quad && quad != node.quadrant) return; // if players quad is different, skip.
       if (node.visibleCheck(this.viewBox, this.centerPos)) {
         // Cell is in range of viewBox
         newVisible.push(node);

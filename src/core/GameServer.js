@@ -23,7 +23,7 @@ const PluginLoader = require('./PluginLoader.js');
 
 
 module.exports = class GameServer {
-  constructor(world, consoleService, configService, version, port, ismaster, name, banned, multiverse, gamemode) {
+  constructor(world, consoleService, configService, version, port, ismaster, name, banned, multiverse, gamemode, language) {
     // fields
     this.world = world;
 
@@ -141,6 +141,7 @@ this.name = name;
     this.topusername = "None";
     this.red = false;
     this.green = false;
+    this.language = language;
     this.rrticks = 0;
     this.minion = false;
     this.miniontarget = {x: 0, y: 0};
@@ -570,7 +571,7 @@ startingFood() {
 
     // Special on-add actions
     node.onAdd(this);
-
+   node.quadSetup(this);
     // todo this is a big problem for splitting up the processes
     // Add to visible nodes
     let clients = this.getClients();
@@ -605,7 +606,7 @@ startingFood() {
         node.onRemove(this);
     this.world.removeNode(node.getId());
     // Special on-remove actions
-
+this.world.removeQuadMap(undefined,node.getId());
 
     // todo this is a big problem for splitting up the processes
     // Animation when eating
@@ -806,10 +807,9 @@ beforeq(player) {
       // Server is paused
       return;
     }
-
-    // Loop through all player cells
-    this.getWorld().getPlayerNodes().forEach((cell)=> {
-      if (!cell) {
+    this.getWorld().getNodes().forEach((cell)=>{
+      if (cell.cellType == 0) {
+         if (!cell) {
         return;
       }
       // Have fast decay over 5k mass
@@ -846,7 +846,14 @@ beforeq(player) {
           cell.mass *= massDecay;
         }
       }
-    });
+      } else {
+       // cell.quadUpdate(this);
+      }
+      
+      
+      
+    })
+    
   }
   beforespawn(player,pos,mass) {
     
@@ -1116,7 +1123,7 @@ player.frozen = fro;
   }
 
   getCellsInRange(cell) {
-    let list = [];
+     let list = [];
     let squareR = cell.getSquareSize(); // Get cell squared radius
 
     // Loop through all cells that are visible to the cell. There is probably a more efficient way of doing this but whatever
@@ -1197,24 +1204,22 @@ player.frozen = fro;
 
   var leftX = cell.position.x - r;
   var rightX = cell.position.x + r;
-
   // Loop through all viruses on the map. There is probably a more efficient way of doing this but whatever
-  var len = this.getVirusNodes().length;
-  for (var i = 0; i < len; i++) {
-    var check = this.getVirusNodes()[i];
-
-    if (typeof check === 'undefined') {
-      continue;
-    }
+  
+  this.getWorld().getNodes('virus').every((check)=>{
+   
+if (check.quadrant != cell.quadrant || !check) return true;
+    
 
     if (!check.collisionCheck(bottomY, topY, rightX, leftX)) {
-      continue;
+      return true;
     }
 
     // Add to list of cells nearby
     virus = check;
-    break; // stop checking when a virus found
-  }
+    return false;
+     // stop checking when a virus found
+  });
   return virus;
 }
 

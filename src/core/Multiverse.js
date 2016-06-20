@@ -1,6 +1,7 @@
 'use strict';
 const ControlServer = require('./ControlServer.js')
 const Commands = require('../modules/CommandList');
+const fs = require('fs');
 module.exports = class Multiverse {
   constructor(version) {
     this.servers = [];
@@ -9,7 +10,12 @@ module.exports = class Multiverse {
     this.whitelist = [];
     this.info = [];
     this.olddata = [];
- 
+    this.data = {
+language: "",
+};
+    this.newStage = 0;
+    this.language = false;
+    this.gLanguage = false;
     this.master = [];
     this.ports = [];
     this.commands = Commands.multiverse;
@@ -81,7 +87,7 @@ module.exports = class Multiverse {
   create(name,ismaster, port, gamemode, titlea) {
     if (!this.servers[name] && (-1 == this.ports.indexOf(port) || !port)) {
     var title = (titlea) ? titlea : name
-    var l = new ControlServer(this.version,this.info, port,ismaster, name, null ,null, gamemode, title);
+    var l = new ControlServer(this.version,this.info, port,ismaster, name, this.language ,null, gamemode, title);
     l.init();
     l.start();
      var id = this.getNextId();
@@ -138,7 +144,146 @@ server.gameServer.reloadDataPacket();
    return false;
   }
   init() {
-    this.selected = this.create("Main", true);  
+    if (this.getLanguage()) this.selected = this.create("Main", true);
+  }
+  writeTitle() {
+      console.log("\u001B[33m                                        _ _       _              _ ");
+    console.log("                                       | (_)     (_)_           | |");
+    console.log("  ___   ____  ____  ____    _   _ ____ | |_ ____  _| |_  ____ _ | |");
+    console.log(" / _ \\ / _  |/ _  |/ ___)  | | | |  _ \\| | |    \\| |  _)/ _  ) || |");
+    console.log("| |_| ( ( | ( ( | | |      | |_| | | | | | | | | | | |_( (/ ( (_| |");
+    console.log(" \\___/ \\_|| |\\_||_|_|       \\____|_| |_|_|_|_|_|_|_|\\___)____)____|");
+    console.log("      (_____|                                                      \u001B[0m");
+    
+  }
+  setlang(lang) {
+    this.language = lang;
+    this.data.language = lang
+    fs.writeFileSync(__dirname + '/../info.json', JSON.stringify(this.data, null, 2));
+    this.selected = this.create("Main", true);
+    setTimeout(function() {
+      this.newStage = 0;
+      
+    }.bind(this),3000);
+  }
+  pressed(str) {
+    var stage = this.newStage
+    if (stage == 1) {
+      if (str == "n" || str == "N") {
+        this.newStage = 2;
+        console.log("[OgarUl] Skipped Tutorial (press enter)");
+        return;
+      }
+      var count = 0;
+      console.log("[Tutorial] Hello, today I will be teaching you how to use Ogar Unlimited.");this.newStage = 1;
+      var s = function() {
+        if (count == 0) {
+          console.log("[Tutorial] Ogar Unlimited , when run, is playable using http://play.ogarul.tk")
+        } else
+        if (count == 1) {
+          console.log("[Tutorial] You can type in your ip address and port in the input box or you may use it in this fashion: http://play.ogarul.tk/?ip=[yourip]:[port]")
+        } else
+        if (count == 2) {
+          console.log("[Tutorial] For playing by yourself, use localhost but for playing with others, you must port foward (google that)")
+        } else
+        if (count == 3) {
+          console.log("[Tutorial] While playing, you may issue commands in the command prompt. Do the command \"help\" to see the list or look at the README for more info")
+        } else
+        if (count == 4) {
+          console.log("[Tutorial] Also, you may configure OgarUl by using the configs located in src/settings/.");
+        } else
+        if (count == 5) {
+          console.log("[Tutorial] You can configure things such as gamemodes, chat, speed and other things");
+        } 
+        if (count == 6) {
+          console.log("[Tutorial] Feel lonely? you can add robots to the game by doing the addbot command.")
+        } else
+        if (count == 7) {
+          console.log("[Tutorial] Want raga/minions/bots? you can give yourself minions by using the minion command")
+        } else
+        if (count == 8) {
+          console.log("[Tutorial] Do you know you can configure the client? so it displays your custom text? Edit settings/clientConfig.ini")
+        } else
+        if (count == 9) {
+          console.log("[Tutorial] Want more that 1 server? you can create multiple servers using different ports using the multiverse command")
+        } else
+        if (count == 10) {
+          console.log("[Tutorial] Do you know that Ogar Unlimited's function is basically unlimited? You can also add plugins!")
+        } else
+        if (count == 11) {
+          console.log("[Tutorial] There are too many features to describe, so explore! You will never be bored because of the many features it has, some even undocumented!")
+        return true;
+          
+        } 
+        
+        count ++;
+    
+      }
+      this.newStage = 20
+      this.interval = setInterval(function() {
+        if (s()) {
+clearInterval(this.interval);
+this.newStage = 2;
+}
+        
+      }.bind(this), 1500)
+    } else if (stage == 20) {
+    console.log("[OgarUl] Skipped Tutorial (press enter)");  
+    this.newStage = 2;
+    clearInterval(this.interval);
+    return;
+    } else if (stage == 2) {
+      console.log("[OgarUl] We will need to have some info beforehand.. (press enter)");
+      this.newStage = 3
+    } else if (stage == 3) {
+      console.log("[OgarUl] What is the language you prefer? Available: en (english) es (spanish)");
+      this.newStage = 4;
+    } else if (stage == 4) {
+      try {
+        if (str == "en") {
+          console.log("En selected");
+          console.log("[Console] Starting server...");
+          this.newStage = 5;
+          this.setlang(str);
+          return;
+        }
+     fs.readFileSync(__dirname + "/../locals/" + str + ".js");
+     console.log(str + " selected");
+          console.log("[Console] Starting server...");
+          this.newStage = 5;
+          this.setlang(str)
+          return;
+      } catch (e) {
+        console.log("[OgarUl] That language does not exist!" + e);
+        return;
+      }
+    }
+    
+  }
+  getLanguage() {
+    var create = function() {
+      this.newStage = 1;
+      this.writeTitle();
+      console.log("[OgarUL] Welcome to Ogar Unlimited!");
+      console.log("[OgarUl] We sensed that this is your first time! Welcome! Thank you for choosing OgarUL!");
+      console.log("[OgarUl] First, let us show you around a bit...");
+      console.log("[OgarUl] Press the ENTER key (or type N and press enter to skip tutorial)");
+    }.bind(this);
+    try {
+  var data = fs.readFileSync(__dirname + '/../info.json', "utf8");
+    data = JSON.parse(data);
+this.data = data;
+    this.language = data.language;
+    if (!this.language) {
+create();
+return false;
+}
+    console.log("[Console] Language " + this.language + " Selected");
+    return true;
+    } catch (e) {
+      create()
+    }
+    
   }
   start() {
     
@@ -194,10 +339,14 @@ server.gameServer.reloadDataPacket();
       process.stdout.write("\x1b[2m\r");
     }
       } catch (e) {
-        console.log(e)
+        
       }
       
       in_.question(">", function (str) {
+         if (self.newStage != 0) {
+      self.pressed(str);
+      
+    } else {
         if (!self.selected) return;
         if (self.selected.gameServer.config.dev != 1) {
           try {
@@ -209,6 +358,7 @@ server.gameServer.reloadDataPacket();
         } else {
           self.parseCommands(str); // dev mode, throw full error
         }
+}
         // todo fix this
         return self.prompt(in_)(); // Too lazy to learn async
       });
@@ -247,5 +397,6 @@ server.gameServer.reloadDataPacket();
       }
     }
   }
+    
 };
   }

@@ -49,6 +49,46 @@ Cell.prototype.setVis = function (state, so) {
   }
   return true;
 };
+Cell.prototype.quadSetup = function(gameServer) {
+  this.gameServer = gameServer;
+ var quad = this.getQuadrant(gameServer) 
+    this.changeQuadrant(quad,gameServer);
+  if (!quad) {
+    setTimeout(function() {
+      this.gameServer = gameServer;
+ var quad = this.getQuadrant(gameServer) 
+    this.changeQuadrant(quad,gameServer);
+    }.bind(this), 500);
+  }
+}
+Cell.prototype.changeQuadrant = function(quad, gameServer) {
+  if (quad) {
+// if (this.quadrant) gameServer.getWorld().removeQuadMap(this.quadrant,this.getId());
+ // gameServer.getWorld().setQuadMap(quad,this.getId());
+ this.quadrant = quad;
+  } else {
+    console.log("[Quadmap] Change quad failed")
+  }
+};
+Cell.prototype.getQuadrant = function(gameServer) {
+  if (!gameServer && this.gameServer) gameServer = this.gameServer;
+  var x = this.position.x;
+  var y = this.position.y;
+  var config = gameServer.config
+  var borderH = Math.round((config.borderBottom + config.borderTop) / 2);
+  var borderV = Math.round((config.borderRight + config.borderLeft) / 2);
+  if (x > borderV && y > borderH) {
+    return 4;
+  } else if (x > borderV && y <= borderH) {
+    return 1;
+  } else if (x <= borderV && y > borderH) {
+    return 3;
+  } else if (x <= borderV && y <= borderH) {
+    return 2;
+  } else {
+    return false;
+  }
+};
 Cell.prototype.getName = function () {
   if (this.owner && !this.name) {
     return this.owner.name;
@@ -292,6 +332,7 @@ Cell.prototype.calcMovePhys = function (config) {
   // Set position
   this.position.x = x1 >> 0;
   this.position.y = y1 >> 0;
+  if (this.gameServer) this.quadUpdate(this.gameServer)
 };
 
 // Override these
@@ -330,6 +371,11 @@ Cell.prototype.simpleCollide = function (x1, y1, check, d) {
 
 Cell.prototype.abs = function (x) {
   return x < 0 ? -x : x;
+};
+Cell.prototype.quadUpdate = function(gameServer) {
+   var quad = false;
+  quad = this.getQuadrant(gameServer);
+  if (quad && quad != this.quadrant) this.changeQuadrant(quad,gameServer);
 };
 
 Cell.prototype.getDist = function (x1, y1, x2, y2) {

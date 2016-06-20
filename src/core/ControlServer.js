@@ -10,11 +10,12 @@ const Updater = require('./Updater.js');
 const ConfigService = require('./ConfigService.js');
 'use strict';
 module.exports = class ControlServer {
-  constructor(version, multiverse, port, ismaster, name, configService, banned, gamemode, title) {
+  constructor(version, multiverse, port, ismaster, name, language, banned, gamemode, title) {
     // fields
     //this.consoleStreams = {};
     this.servers = [];
     this.name = name;
+    this.language = language;
     this.title = title;
     this.gamemode = gamemode;
 this.port = port;
@@ -30,7 +31,7 @@ this.world = new WorldModel(this.config.borderRight, this.config.borderLeft, thi
     this.multiverse = multiverse;
 
     // servers
-    this.gameServer = new GameServer(this.world, this.consoleService, this.configService , version, this.port, this.isMaster, this.name, banned, multiverse, gamemode);
+    this.gameServer = new GameServer(this.world, this.consoleService, this.configService , version, this.port, this.isMaster, this.name, banned, multiverse, gamemode, this.language);
 
     // configuration
     this.consoleService.setGameServer(this.gameServer);

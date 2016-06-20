@@ -65,7 +65,7 @@ StickyCell.prototype.update = function (gameServer) {
   let playerNodes = gameServer.getPlayerNodes();
   for (var i in playerNodes) {
     var check = playerNodes[i];
-
+if (check.quadrant != this.quadrant) continue;
     // Do boundary (non-absorbing) collision check
     var collisionDist = check.getSize() + this.radius;
 
