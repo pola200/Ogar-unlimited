@@ -807,7 +807,7 @@ beforeq(player) {
       // Server is paused
       return;
     }
-    this.getWorld().getNodes().forEach((cell)=>{
+    this.getWorld().getNodes('player').forEach((cell)=>{
       if (cell.cellType == 0) {
          if (!cell) {
         return;
