@@ -352,7 +352,7 @@ startingFood() {
     this.socketServer.on('error', function err(e) {
       switch (e.code) {
         case "EADDRINUSE":
-          console.log("[Error] Server could not bind to port! Please close out of Skype or change 'serverPort' in gameserver.ini to a different number.");
+          console.log("[Error] Server could not bind to port! Please close out of Skype or change 'serverPort' in src/settings to a different number.");
           break;
         case "EACCES":
           console.log("[Error] Please make sure you are running Ogar with root privileges.");
