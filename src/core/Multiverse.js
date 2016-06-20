@@ -211,7 +211,10 @@ server.gameServer.reloadDataPacket();
           console.log("[Tutorial] Do you know that Ogar Unlimited's function is basically unlimited? You can also add plugins!")
         } else
         if (count == 11) {
-          console.log("[Tutorial] There are too many features to describe, so explore! You will never be bored because of the many features it has, some even undocumented!")
+          console.log("[Tutorial] Do you also know that you can use skins? Do <skiname>yourname in the nickname box for that skin");
+        } else
+        if (count == 12) {
+          console.log("[Tutorial] There are too many features to describe, so explore! You will never be bored because of the many features it has, some even undocumented! (press enter)")
         return true;
           
         } 
