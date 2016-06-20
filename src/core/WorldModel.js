@@ -120,7 +120,7 @@ clearAll() {
     this.ejectedNodes.clear();
     this.rainbowNodes.clear();
     this.virusNodes.clear();
-    clearQuadMap()
+    this.clearQuadMap()
     this.lastNodeId = 2;
 }
   removeNode(id) {
