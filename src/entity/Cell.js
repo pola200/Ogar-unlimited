@@ -278,7 +278,7 @@ Cell.prototype.calcMovePhys = function (config) {
                 var deltaY = this.position.y - cell.position.y;
                 var angle = Math.atan2(deltaX, deltaY);
 
-                check.moveEngineTicks++;
+                cell.moveEngineTicks++;
                 this.gameServer.getWorld().setNodeAsMoving(cell.getId(), cell);
 
                 this.moveEngineTicks++;
