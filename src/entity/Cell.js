@@ -288,8 +288,8 @@ Cell.prototype.calcMovePhys = function (config) {
 
                 var move = (realAD - dist) / 2;
 
-                X += (Math.sin(angle) * move) >> 0;
-                Y += (Math.cos(angle) * move) >> 0;
+                this.position.x += (Math.sin(angle) * move) >> 0;
+                this.position.y += (Math.cos(angle) * move) >> 0;
             }
         });
       }
