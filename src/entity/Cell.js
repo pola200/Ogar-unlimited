@@ -264,7 +264,7 @@ Cell.prototype.calcMovePhys = function (config) {
       totTravel = Math.min(totTravel + maxTravel, speed);
       var x1 = this.position.x + (totTravel * sin) + xd;
       var y1 = this.position.y + (totTravel * cos) + yd;
-      if (this.gameServer) {
+      if (this.gameServer && this.gameServer.config.collideEjected == 1) {
         this.gameServer.getEjectedNodes().forEach((cell)=> { // needs to be simplified
         if (cell.quadrant != this.quadrant) return;
           if (this.nodeId == cell.getId()) return;
