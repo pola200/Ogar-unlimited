@@ -290,7 +290,7 @@ Cell.prototype.calcMovePhys = function (config) {
               //}
             }
             if (this.moveEngineTicks == 0) {
-           //   this.setMoveEngineData(0, 1); //make sure a collided cell checks again for collisions with other cells
+              this.setMoveEngineData(0, 1); //make sure a collided cell checks again for collisions with other cells
             }
           }
         });
