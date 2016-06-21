@@ -62,6 +62,7 @@ module.exports = class ConfigService {
       autoban: 0, // Auto bans a player if they are cheating
       randomEjectMassColor: 0, // 0 = off 1 = on
       uniban: 1,
+      collideEjected: 1,
       ffaTimeLimit: 60, // TFFA time
       ffaMaxLB: 10, // Max leaderboard slots
       packetversion: 1,
