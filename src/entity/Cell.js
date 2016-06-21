@@ -274,8 +274,8 @@ Cell.prototype.calcMovePhys = function (config) {
 
             if (dist < allowDist) {
                 // Two ejected cells collided
-                var deltaX = this.position.x - check.position.x;
-                var deltaY = this.position.y - check.position.y;
+                var deltaX = this.position.x - cell.position.x;
+                var deltaY = this.position.y - cell.position.y;
                 var angle = Math.atan2(deltaX, deltaY);
 
                 check.moveEngineTicks++;
@@ -284,7 +284,7 @@ Cell.prototype.calcMovePhys = function (config) {
                 this.moveEngineTicks++;
 
                 // Make sure they don't become a living organism (wait, a multicellular organism simulator!)
-                var realAD = (this.getSize() + check.getSize()) * 1.2;
+                var realAD = (this.getSize() + cell.getSize()) * 1.2;
 
                 var move = (realAD - dist) / 2;
 
