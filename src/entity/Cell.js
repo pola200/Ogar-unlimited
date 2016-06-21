@@ -244,6 +244,8 @@ Cell.prototype.visibleCheck = function (box, centerPos) {
 };
 
 Cell.prototype.calcMovePhys = function (config) {
+  var X = this.position.x + ((this.moveEngineSpeed / 2) * Math.sin(this.angle) >> 0);
+    var Y = this.position.y + ((this.moveEngineSpeed / 2) * Math.cos(this.angle) >> 0);
   // Movement engine (non player controlled movement)
   var speed = this.moveEngineSpeed;
   var r = this.getSize();
@@ -288,8 +290,8 @@ Cell.prototype.calcMovePhys = function (config) {
 
                 var move = (realAD - dist) / 2;
 
-                this.position.x += (Math.sin(angle) * move) >> 0;
-                this.position.y += (Math.cos(angle) * move) >> 0;
+                X += (Math.sin(angle) * move) >> 0;
+                Y += (Math.cos(angle) * move) >> 0;
             }
         });
       }
