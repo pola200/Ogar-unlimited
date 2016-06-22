@@ -96,10 +96,15 @@ module.exports = class ConfigService {
       smartbthome: 1, // Automatically sends you back to normal mode after pressing Q proceding an action (default) 2 = off (you need to press Q a lot)
       restartmin: 0, // minutes to restart
       showopactions: 0, // Notifys you of an OP using his power, (0 = Off [default]) 1 = on
-      cRestoreTicks: 10, // Amount of time until a cell's collision retores
-      vRestoreTicks: 6, // Amount of time until a cell's collision retores AFTER consuming a virus
+      cRestoreTicks: 10, // Amount of time until a cell's collision restores
+      vRestoreTicks: 6, // Amount of time until a cell's collision restores AFTER consuming a virus
+      sRestoreTicks: 10, // Amount of time until a cell's collision restores AFTER splitting
       showbmessage: 0, // Notifys you if a banned player tried to join (0 = off [default]) 1 = on
+      splitMult: 0.5, // What defines pushback, cell squishing, strength of small cells, snappiness, etc. NOTE: only works with splitversion set to 0
       splitSpeed: 130, // Splitting speed
+      splitDistance: 0.87, // How far your cell travels after splitting
+      wDistance: 0.88, // How far your w's travel after shooting them
+      autoSplitSpeed: 350, // The speed of autosplits when playerMaxMass is reached
       showjlinfo: 0, // Notifys you if a player has left or joined (0 = off [default]) 1 = on
       ejectvspeed: 120, // How far an ejected virus (from w) shoots
       playerSafeSpawn: 1, // Makes sure players dont spawn near, inside, or on top of one another
