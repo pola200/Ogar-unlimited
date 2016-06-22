@@ -21,11 +21,7 @@ const SortedMap = require("collections/sorted-map");
 
 'use strict';
 module.exports = class QuadMap {
-  constructor(borderRight, borderLeft, borderBottom, borderTop, quad, world) {
-    this.borderRight = borderRight;
-    this.borderLeft = borderLeft;
-    this.borderBottom = borderBottom;
-    this.borderTop = borderTop;
+  constructor(quad, world) {
     this.quad = quad;
     this.world = world;
     this.nodes = new SortedMap();
@@ -60,7 +56,7 @@ module.exports = class QuadMap {
   }
 
   addNode(node, type) {
-    let id = this.getNewNodeId();
+    let id = this.world.getNewNodeId();
     this.setNode(id, node, type);
     this.setAsNode(id, node);
     return id;
@@ -144,17 +140,7 @@ clearAll() {
     this.movingNodes.delete(id);
   }
 
-  getNewNodeId() {
-    // Resets integer
-    if (this.lastNodeId > 2147483647) {
-      this.lastNodeId = 1;
-    }
-    return this.lastNodeId++;
-  }
-
-  getNextNodeId() {
-    return this.getNewNodeId();
-  }
+  s
 setAsNode(id, node) {
   this.nodes.set(id, node)
 }
