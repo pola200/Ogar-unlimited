@@ -17,7 +17,7 @@ The AJS Dev Team.
 // This is our shared data type. It contains all of the data about the state of the would that needs to be shared
 // among our processes.
 const Cell = require('../entity/Cell.js');
-const SortedMap = require("collections/sorted-map");
+const SortedMap = require("collections/fast-map");
 
 'use strict';
 module.exports = class WorldModel {
