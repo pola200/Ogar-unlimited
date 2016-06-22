@@ -9,10 +9,10 @@ module.exports = {
   Rainbow: require('./Rainbow'),
   Debug: require('./Debug'),
   Zombie: require('./Zombie'),
-  TeamZ: require('./TeamZ.js'),
+// TeamZ: require('./TeamZ.js'),
   TeamX: require('./TeamX.js'),
   NCTeams: require('./NoCollisionTeams.js'),
-  NCTeamZ: require('./NoCollisionTeamZ.js'),
+ // NCTeamZ: require('./NoCollisionTeamZ.js'),
   NCTeamX: require('./NoCollisionTeamX.js'),
   Unlimitpvp: require('./Unlimitpvp.js'),
   UnlimitFFA: require('./Unlimitffa.js'),
@@ -56,18 +56,18 @@ var get = function (id, gameServer) {
     case 12: // Zombie
       mode = new module.exports.Zombie();
       break;
-    case 13: // Zombie Team
-      mode = new module.exports.TeamZ();
-      break;
+   // case 13: // Zombie Team
+     // mode = new module.exports.TeamZ();
+    //  break;
     case 14: // Experimental Team
       mode = new module.exports.TeamX();
       break;
     case 15: // No Collision Team
       mode = new module.exports.NCTeams();
       break;
-    case 16: // No Collision Zombie Team
-      mode = new module.exports.NCTeamZ();
-      break;
+  // case 16: // No Collision Zombie Team
+    //  mode = new module.exports.NCTeamZ();
+    //  break;
     case 17: // No Collision Experimental Team
       mode = new module.exports.NCTeamX();
       break;

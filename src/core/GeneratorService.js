@@ -52,7 +52,7 @@ module.exports = class GeneratorService {
   }
 
   update() {
-    
+    if (!this.gameServer.running) return;
     if (this.gameServer.getWorld().getNodes('food').length < this.config.foodMaxAmount) {
       if (this.gameServer.getWorld().getNodes('food').length < this.config.foodMinAmount) {
         let le = this.config.foodMinAmount - this.gameServer.getWorld().getNodes('food').length

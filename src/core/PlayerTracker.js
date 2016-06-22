@@ -592,8 +592,12 @@ var quad = this.getQuadrant(this.gameServer);
 if (quad && quad != node.quadrant) return; // if players quad is different, skip.
       if (node.visibleCheck(this.viewBox, this.centerPos)) {
         // Cell is in range of viewBox
+ if (!node.watch || node.watch == -1) node.watch = this.pID;
         newVisible.push(node);
-      }
+      } else {
+if (node.watch == this.pID || node.watch == -1) node.watch = false;
+
+}
     });
 
     return newVisible;

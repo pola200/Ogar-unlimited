@@ -803,6 +803,7 @@ beforeq(player) {
 
     // A system to move cells not controlled by players (ex. viruses, ejected mass)
     this.getWorld().getMovingNodes().forEach((check)=> {
+      if (!check.watch) return;
       if (check.moveEngineTicks > 0) {
         check.onAutoMove(this);
         // If the cell has enough move ticks, then move it
@@ -1577,24 +1578,24 @@ onWVerify(client) {
       // Loop main functions
       if (this.running) {
         // todo what is going on here?
-        setTimeout(function() {this.cellTick()}.bind(this), 0);
+        this.cellTick()
         //(this.spawnTick(), 0);
-        setTimeout(function() {this.gameModeTick()}.bind(this), 0);
-        setTimeout(function() {this.updateMotherCells()}.bind(this), 0);
-        setTimeout(function() {this.updateStickyCells()}.bind(this), 0);
+        this.gameModeTick()
+        this.updateMotherCells()
+        this.updateStickyCells()
       }
 
       // Update the client's maps
       this.updateClients();
-      setTimeout(this.cellUpdateTick(), 0);
+      this.cellUpdateTick()
 
       // Update cells/leaderboard loop
       this.tickMain++;
-      setTimeout(function() {
+     
       let count = 0;
       var rnodes = (this.config.rainbowMode == 1) ? this.world.getNodes() : this.getRainbowNodes();
       rnodes.forEach((node)=> {
-        if (!node) return;
+        if (!node || !node.watch) return;
         count++;
 
         if (!node.rainbow) {
@@ -1610,9 +1611,9 @@ onWVerify(client) {
       });
 
       if (count <= 0) this.clearRainbowNodes();
-}.bind(this), 0);
+
       if (this.tickMain >= this.config.fps) { // 1 Second
-      setTimeout(function() {
+      
        
         // let rNodes = this.getRainbowNodes();
         // if (rNodes.length > 0) {
@@ -1653,7 +1654,7 @@ onWVerify(client) {
   throw e;
 }
         }
-      }.bind(this), 0);
+      
 
         // Update leaderboard with the gamemode's method
         this.leaderboard = [];
@@ -1680,7 +1681,7 @@ onWVerify(client) {
 
       // Reset
       this.tick = 0;
-setTimeout(function() {
+
       let humans = 0,
         bots = 0;
 
@@ -1721,7 +1722,7 @@ setTimeout(function() {
           this.clearLeaderBoard();
         }
       }
-}.bind(this),0);
+
       // Restart main loop immediately after current event loop (setImmediate does not amplify any lag delay unlike setInterval or setTimeout)
       setImmediate(this.mainLoopBind);
     } else {

@@ -312,12 +312,6 @@
     "name": "NoCollisionTeamX.js"
   },
   {
-    "hash": "655bdb1bdb30faef319328efb99910deee6ca157",
-    "src": "src/gamemodes/NoCollisionTeamZ.js",
-    "dst": "./gamemodes/NoCollisionTeamZ.js",
-    "name": "NoCollisionTeamZ.js"
-  },
-  {
     "hash": "6a3c450d0f3bb2b5adfaf9aa9b6b73376241b204",
     "src": "src/gamemodes/NoCollisionTeams.js",
     "dst": "./gamemodes/NoCollisionTeams.js",
@@ -346,12 +340,6 @@
     "src": "src/gamemodes/TeamX.js",
     "dst": "./gamemodes/TeamX.js",
     "name": "TeamX.js"
-  },
-  {
-    "hash": "1f14e934af3253078a475186647838cdf5414503",
-    "src": "src/gamemodes/TeamZ.js",
-    "dst": "./gamemodes/TeamZ.js",
-    "name": "TeamZ.js"
   },
   {
     "hash": "87823bdf88f1fce9d5de297fa9775e580d84f2b9",
