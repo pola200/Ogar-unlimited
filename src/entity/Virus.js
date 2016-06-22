@@ -216,11 +216,9 @@ Virus.prototype.onAutoMove = function (gameServer) {
     var bottomY = check.position.y + r;
     var leftX = check.position.x - r;
     var rightX = check.position.x + r;
-    var ejected = new Virus();
 
     if (this.collisionCheck(bottomY, topY, rightX, leftX)) {
       check.angle = this.angle; //make sure new virus shoots in same direction as this virus
-      gameServer.addNode(ejected, "moving");
       this.feed(check, gameServer);
       i--;
       len--;
