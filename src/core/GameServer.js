@@ -1712,7 +1712,12 @@ setTimeout(function() {
         } else if (this.running && humans == 0) {
           console.log("[" + this.name + "] The Game Was Paused to save memory. Join the game to resume!");
           this.pause();
-          this.clearEjectedNodes();
+          var nodes = this.getWorld().getNodes().toArray();
+  for (let i = 0; i < nodes.length; i++) {
+    this.removeNode(nodes[i])
+    
+  } 
+  this.getWorld().clearAll();
           this.clearLeaderBoard();
         }
       }
