@@ -1,4 +1,4 @@
-module.exports =  function (gameServer, split) {
+module.exports = function (gameServer, split) {
   var key = split[1];
   var value = split[2];
 
