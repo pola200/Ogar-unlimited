@@ -187,21 +187,21 @@ getQuadMap(quad) {
     };
  }
  setQuadMap(quad, id) {
-   this.quadMap[quad].push(id)
+   this.quadMap[quad][id] = id;
  }
- removeQuadMap(quad, id) {
+ removeQuadMap(quad, ind) {
    try {
      if (quad) {
-          var ind = this.quadMap[quad].indexOf(id);
+          
    this.quadMap[quad].splice(ind,1);
      } else {
-       var ind = this.quadMap[1].indexOf(id);
+       
        this.quadMap[1].splice(ind,1);
-       var ind = this.quadMap[1].indexOf(id);
+      
        this.quadMap[2].splice(ind,1);
-       var ind = this.quadMap[1].indexOf(id);
+     
        this.quadMap[3].splice(ind,1);
-       var ind = this.quadMap[1].indexOf(id);
+     
        this.quadMap[4].splice(ind,1);
      }
    } catch (e) {
