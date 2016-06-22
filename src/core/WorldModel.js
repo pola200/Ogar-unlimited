@@ -21,21 +21,16 @@ const SortedMap = require("collections/sorted-map");
 
 'use strict';
 module.exports = class WorldModel {
-  constructor(borderRight, borderLeft, borderBottom, borderTop) {
+  constructor(borderRight, borderLeft, borderBottom, borderTop, quad, world) {
     this.borderRight = borderRight;
     this.borderLeft = borderLeft;
     this.borderBottom = borderBottom;
     this.borderTop = borderTop;
-   
+    this.quad = quad;
+    this.world = world;
     this.lastNodeId = 2;    // todo why 2?
     this.nodes = new SortedMap();
     
-    this.quadMap = {
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-    };
    
     this.movingNodes = new SortedMap();
     this.playerNodes = SortedMap();
@@ -135,7 +130,6 @@ clearAll() {
     this.ejectedNodes.clear();
     this.rainbowNodes.clear();
     this.virusNodes.clear();
-    this.clearQuadMap()
     this.lastNodeId = 2;
 }
   removeNode(id) {
@@ -175,39 +169,9 @@ setAsNode(id, node) {
    this.virusNodes.clear();
    
  }
-getQuadMap(quad) {
-  return this.quadMap[quad];
-}
- clearQuadMap() {
-   this.quadMap = {
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-    };
- }
- setQuadMap(quad, id) {
-   this.quadMap[quad].push(id)
- }
- removeQuadMap(quad, id) {
-   try {
-     if (quad) {
-          var ind = this.quadMap[quad].indexOf(id);
-   this.quadMap[quad].splice(ind,1);
-     } else {
-       var ind = this.quadMap[1].indexOf(id);
-       this.quadMap[1].splice(ind,1);
-       var ind = this.quadMap[1].indexOf(id);
-       this.quadMap[2].splice(ind,1);
-       var ind = this.quadMap[1].indexOf(id);
-       this.quadMap[3].splice(ind,1);
-       var ind = this.quadMap[1].indexOf(id);
-       this.quadMap[4].splice(ind,1);
-     }
-   } catch (e) {
-     console.log("[Quadmap] " + e);
-   }
- }
+
+ 
+
  
  clearPlayer() {
    this.playerNodes.clear();
