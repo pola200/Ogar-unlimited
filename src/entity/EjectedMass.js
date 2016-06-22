@@ -53,14 +53,14 @@ EjectedMass.prototype.onAutoMove = function (gameServer) {
   }
 
   let virusNodes = gameServer.getVirusNodes();
-  if (virusNodes.length < gameServer.config.virusMaxAmount) {
+
     // Check for viruses
     var v = gameServer.getNearestVirus(this);
     if (v) { // Feeds the virus if it exists
       v.feed(this, gameServer);
       return true;
     }
-  }
+  
 };
 
 EjectedMass.prototype.moveDone = function (gameServer) {
