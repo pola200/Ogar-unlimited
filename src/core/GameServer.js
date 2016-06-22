@@ -786,7 +786,7 @@ beforeq(player) {
       // Check if cells nearby
       let list = this.getCellsInRange(cell);
       list.forEach((check)=> {
-        if (check.cellType === 0 && (client != check.owner) && (cell.mass < check.mass * 1.25) && this.config.playerRecombineTime !== 0) { //extra check to make sure popsplit works by retslac
+        if (check.cellType === 0 && (client != check.owner) && (cell.mass < check.mass * this.config.sizeMult) && this.config.playerRecombineTime !== 0) { //extra check to make sure popsplit works by retslac
           check.inRange = false;
           return;
         }
@@ -1350,9 +1350,12 @@ onWVerify(client) {
         }
 
         let angle = utilities.getAngleFromClientToCell(client, cell);
+        
+        // Randomize angle
+        angle += (Math.random() * 0.1) - 0.05;
 
         // Get starting position
-        let size = cell.getSize() + 7;
+        let size = cell.getSize() + 0.2;
         let startPos = {
           x: cell.position.x + ((size + this.config.ejectMass) * Math.sin(angle)),
           y: cell.position.y + ((size + this.config.ejectMass) * Math.cos(angle))
@@ -1365,7 +1368,7 @@ onWVerify(client) {
           cell.mass -= this.config.virusmassloss;
         }
         // Randomize angle
-        angle += (Math.random() * .7) - .15;
+        angle += (Math.random() * 0.6) - 0.3;
 
         // Create cell
         let ejected = undefined;
@@ -1373,10 +1376,10 @@ onWVerify(client) {
         else ejected = new Entity.Virus(this.world.getNextNodeId(), null, startPos, this.config.ejectMass, this);
         ejected.setAngle(angle);
         if (this.config.ejectvirus === 1) {
-          ejected.setMoveEngineData(this.config.ejectvspeed, 40, 0.91);
+          ejected.setMoveEngineData(this.config.ejectvspeed, 40, this.config.wDistance);
           ejected.par = client;
         } else {
-          ejected.setMoveEngineData(this.config.ejectSpeed, 40, 0.91);
+          ejected.setMoveEngineData(this.config.ejectSpeed, 40, this.config.wDistance);
         }
 
         if (this.config.randomEjectMassColor === 1) {
@@ -1420,9 +1423,12 @@ onWVerify(client) {
           }
 
           let angle = utilities.getAngleFromClientToCell(client, cell);
+          
+          // Randomize angle
+          angle += (Math.random() * 0.1) - 0.05;
 
           // Get starting position
-          let size = cell.getSize() + 7; //add speed of playercell
+          let size = cell.getSize() + 0.2; //add speed of playercell
           let startPos = {
             x: cell.position.x + ((size + this.config.ejectMass) * Math.sin(angle)),
             y: cell.position.y + ((size + this.config.ejectMass) * Math.cos(angle))
@@ -1443,7 +1449,7 @@ onWVerify(client) {
             cell.mass -= this.config.virusmassloss;
           }
           // Randomize angle
-          angle += (Math.random() * .7) - .15;
+          angle += (Math.random() * 0.6) - 0.3;
 
           // Create cell
           let ejected = undefined;
@@ -1453,10 +1459,10 @@ onWVerify(client) {
           
           // Set ejectspeed to "60" in config for best results
           if (this.config.ejectvirus == 1) {
-            ejected.setMoveEngineData(this.config.ejectvspeed, 40, 0.91);
+            ejected.setMoveEngineData(this.config.ejectvspeed, 40, this.config.wDistance);
 
           } else {
-            ejected.setMoveEngineData(this.config.ejectSpeed, 40, 0.91);
+            ejected.setMoveEngineData(this.config.ejectSpeed, 40, this.config.wDistance);
           }
           if (this.config.ejectvirus == 1) {
             ejected.par = client;
@@ -2018,7 +2024,7 @@ game.consoleService.execCommand("update", split);
     newCell.restoreCollisionTicks = 25;
     newCell.calcMergeTime(this.config.playerRecombineTime);
     newCell.ignoreCollision = true; // Remove collision checks
-    newCell.restoreCollisionTicks = this.config.cRestoreTicks; //vanilla agar.io = 10
+    newCell.restoreCollisionTicks = this.config.sRestoreTicks; //vanilla agar.io = 10
     // Add to moving cells list
     this.addNode(newCell, "moving");
   }

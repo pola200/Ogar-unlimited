@@ -150,7 +150,7 @@ Cell.prototype.addMass = function (n) {
       this.mass = this.mass + n;
       this.mass = this.mass/2;
       var randomAngle = Math.random() * 6.28; // Get random angle
-      this.owner.gameServer.autoSplit(this.owner, this, randomAngle, this.mass, 480);
+      this.owner.gameServer.autoSplit(this.owner, this, randomAngle, this.mass, gameServer.config.autoSplitSpeed);
     } else {
       this.mass += n;
       var th = this;
