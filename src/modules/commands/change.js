@@ -3,13 +3,9 @@ module.exports = function (gameServer, split) {
   var value = split[2];
 
   // Check if int/float
-  try {
-  if (!isNaN(value)) {
+
+  if (isNaN(value)) {
     value = parseInt(value);
-  }
-  } catch (e) {
-    console.log("[Console] Please insert a valid value");
-    return;
   }
 
   if (typeof gameServer.config[key] != 'undefined') {
