@@ -156,14 +156,16 @@ Id   | Name                         | Additional Description
 The available in-game chat commands
 
 
-## Console Commands
-The current available console commands are listed here. Command names are not case sensitive, but player names are.
  Command                      | Usage
 ------------------------------|-----------------------------------------------------------------------------------------------
 help                          | Shows list of commands
 color [r] [b] [g]             | Changes the color of your chatname
 mute                          | Mutes/unmutes chat
 
+
+
+## Console Commands
+The current available console commands are listed here. Command names are not case sensitive, but player names are.
 
 
  Command                      | Usage
