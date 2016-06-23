@@ -31,6 +31,11 @@ module.exports = Commands;
 //var fillChar = require('./commands/fillChar.js');
 
 // Commands
+Commands.chat = {
+  color: require('./commands/colorchat.js'),
+  
+  
+}
 Commands.multiverse = {
     multiverse: require('./commands/multiverse.js'),
     exit: require('./commands/exit.js'),
