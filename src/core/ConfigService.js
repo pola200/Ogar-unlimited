@@ -101,7 +101,8 @@ module.exports = class ConfigService {
       sRestoreTicks: 10, // Amount of time until a cell's collision restores AFTER splitting
       showbmessage: 0, // Notifys you if a banned player tried to join (0 = off [default]) 1 = on
       splitMult: 0.5, // What defines pushback, cell squishing, strength of small cells, snappiness, etc. NOTE: only works with splitversion set to 0
-      splitSpeed: 130, // Splitting speed
+      splitSpeed: 70, // Splitting speed
+      splitSpeedVersion: 0, 
       splitDistance: 0.87, // How far your cell travels after splitting
       wDistance: 0.88, // How far your w's travel after shooting them
       autoSplitSpeed: 350, // The speed of autosplits when playerMaxMass is reached
