@@ -222,6 +222,7 @@ if (check.quadrant != this.quadrant) continue;
     if (this.collisionCheck(bottomY, topY, rightX, leftX)) {
       check.angle = this.angle; //make sure new virus shoots in same direction as this virus
       this.feed(check, gameServer);
+      this.mass = gameServer.config.virusStartMass;
       i--;
       len--;
     }
