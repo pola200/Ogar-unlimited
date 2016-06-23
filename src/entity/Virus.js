@@ -23,7 +23,7 @@ Virus.prototype.calcMove = null; // Only for player controlled movement
 Virus.prototype.feed = function (feeder, gameServer) {
   if (this.moveEngineTicks == 0) this.setAngle(feeder.getAngle()); // Set direction if the virus explodes
    var random = Math.floor(Math.random() * 20);
- if (random > 3 && this.mass < gameServer.config.virusStartMass + 400) this.mass += feeder.mass;
+ if (random > 4 && this.mass < gameServer.config.virusStartMass + 400) this.mass += feeder.mass;
   var random = Math.floor(Math.random() * 20);
   gameServer.removeNode(feeder);
   
@@ -213,7 +213,7 @@ Virus.prototype.onAutoMove = function (gameServer) {
    var len = ejectedNodes.length;
   for (var i = 0; i < len; i++) {
    var check = ejectedNodes[i];
-
+if (check.quadrant != this.quadrant) continue;
     var topY = check.position.y - r;
     var bottomY = check.position.y + r;
     var leftX = check.position.x - r;
