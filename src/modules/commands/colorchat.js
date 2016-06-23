@@ -25,9 +25,9 @@ module.exports = function (gameServer,player, split) {
     g: 0,
     b: 0
   };
-  color.r = Math.max(Math.min(parseInt(split[2]), 255), 0);
-  color.g = Math.max(Math.min(parseInt(split[3]), 255), 0);
-  color.b = Math.max(Math.min(parseInt(split[4]), 255), 0);
+  color.r = Math.max(Math.min(parseInt(split[1]), 255), 0);
+  color.g = Math.max(Math.min(parseInt(split[2]), 255), 0);
+  color.b = Math.max(Math.min(parseInt(split[3]), 255), 0);
 
   player.chatColor = color;
   msg("Set chat color to R:" + color.r + " G:" + color.g + " B:" + color.b);
