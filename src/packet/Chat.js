@@ -8,7 +8,7 @@ module.exports = Chat;
 Chat.prototype.build = function () {
   var nick = "";
   if (typeof this.sender == "object") {
-    var nick = this.sender.getName();
+    var nick = this.sender.chatName;
     if (!nick) {
         if (this.sender.cells.length > 0) {
             nick = 'An unnamed cell'
