@@ -38,6 +38,7 @@ Commands.chat = {
     }
     msg("======== Available Commands... =========");
     msg("Color           | Change your chat color");
+    msg("Mute            | Mute/unmute chat");
     msg("========================================");
   },
   color: require('./commands/colorchat.js'),
