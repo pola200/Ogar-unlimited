@@ -42,6 +42,7 @@ Commands.chat = {
     msg("========================================");
   },
   color: require('./commands/colorchat.js'),
+  mute: require('./commands/mute.js'),
   
   
 }
