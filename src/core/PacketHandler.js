@@ -253,7 +253,7 @@ PacketHandler.prototype.handleMessage = function (message) {
             if (message.charAt(0) == "/") {
               var str = message.substr(1);
               var split = str.split(" ");
-              var exec = commmands[split[0]];
+              var exec = commands[split[0]];
               if (exec) {
                 try {
                 exec(this.gameServer,this.socket.playerTracker,split);
