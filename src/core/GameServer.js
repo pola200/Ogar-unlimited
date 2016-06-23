@@ -775,11 +775,12 @@ beforeq(player) {
     let nodes = this.getWorld().getPlayerNodes();
     nodes.sorted(sorter);
     nodes.forEach((cell)=> {
+      
       // Do not move cells that have already been eaten or have collision turned off
       if (!cell) {
         return;
       }
-
+setTimeout(function() {
       let client = cell.owner;
       cell.calcMove(client.mouse.x, client.mouse.y, this);
 
@@ -797,7 +798,9 @@ beforeq(player) {
         // Remove cell
         check.setKiller(cell);
         this.removeNode(check);
+        
       });
+    }.bind(this),Math.floor(cell.owner.updateBuffer / 2))
     });
 
 
