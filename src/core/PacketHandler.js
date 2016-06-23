@@ -1,4 +1,5 @@
 var Packet = require('./../packet/index');
+var commands = require('../modules/CommandList').chat;
 /*
 Proverbs 20:18:
    Bread obtained by falsehood is sweet to a man, But afterward his mouth will be filled with gravel.
@@ -244,7 +245,20 @@ PacketHandler.prototype.handleMessage = function (message) {
                     break;
                 }
             }
+            
             if (message.charAt(0) == "/") {
+              var str = message.substr(1);
+              var split = str.split(" ");
+              var exec = commmands[split[0]];
+              if (exec) {
+                try {
+                exec(this.gameServer,this.socket.playerTracker,split);
+                } catch (e) {
+                  this.gameServer.pm(this.socket.playerTracker.pID," There was an error with the command, " + e);
+                  console.log("[Console] Caught error " + e );
+                } 
+                break;
+              }
               this.gameServer.pm(this.socket.playerTracker.pID,"That is not a valid command!");
               break;
             }
