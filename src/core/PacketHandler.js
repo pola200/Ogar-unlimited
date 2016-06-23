@@ -216,7 +216,11 @@ PacketHandler.prototype.handleMessage = function (message) {
 
             var zname = wname = this.socket.playerTracker.name;
             if (wname == "") wname = "Spectator";
-              
+              for (var i in this.gameServer.plugins) {
+        if (this.gameServer.plugins[i].beforecmsg) {
+          if (!this.gameServer.plugins[i].beforecmsg(this.socket.playerTracker, message)) break;
+        }
+      }
             if (this.gameServer.config.serverAdminPass != '') {
                 var passkey = "/rcon " + this.gameServer.config.serverAdminPass + " ";
                 if (message.substr(0, passkey.length) == passkey) {
