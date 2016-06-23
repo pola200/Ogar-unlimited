@@ -60,6 +60,7 @@ https://github.com/AJS-development/Ogar-unlimited/issues/638
  32. language support
  33. tutorial
  34. quadrants
+ 35. chat commands
  
 ### Note:
 Please note that this is updated very frequently and you should check for updates every week. I added an update system but It needs to be initialized by you (because I don't think it is the right thing to do, updating without your consent). Also you may copy this and modify it just please give some credit to the hard working dev team, that is all I care. Another note is that I am sometimes terrible in my grammar (I still cannot spell potato out loud). If there is an issue, please notify me. If there is something you want in this, just make a pull request.
@@ -151,9 +152,19 @@ Id   | Name                         | Additional Description
 18   | Leap                         | Where you leap instead of split, made by Ogarplus
 20   | Rainbow FFA                  | Hint: Use "Acid Mode" in the settings in the custom client
 22   | BlackHole                    | Normal FFA but with one big black hole
+## Chat Commands
+The available in-game chat commands
+
 
 ## Console Commands
 The current available console commands are listed here. Command names are not case sensitive, but player names are.
+ Command                      | Usage
+------------------------------|-----------------------------------------------------------------------------------------------
+help                          | Shows list of commands
+color [r] [b] [g]             | Changes the color of your chatname
+mute                          | Mutes/unmutes chat
+
+
 
  Command                      | Usage
 ------------------------------|-----------------------------------------------------------------------------------------------
