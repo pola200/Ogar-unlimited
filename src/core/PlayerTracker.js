@@ -33,6 +33,7 @@ module.exports = class PlayerTracker {
     this.gameServer = gameServer;
     this.updateBuffer = Math.floor(Math.random() * 500) + 1;
     this.chatAllowed = true;
+    this.chat = true;
     this.isAdmin = false;
     this.checkTick = 40;
     this.isBot = false;
