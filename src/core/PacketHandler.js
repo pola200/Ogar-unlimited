@@ -215,7 +215,7 @@ PacketHandler.prototype.handleMessage = function (message) {
 
             var zname = wname = this.socket.playerTracker.name;
             if (wname == "") wname = "Spectator";
-
+              
             if (this.gameServer.config.serverAdminPass != '') {
                 var passkey = "/rcon " + this.gameServer.config.serverAdminPass + " ";
                 if (message.substr(0, passkey.length) == passkey) {
@@ -244,7 +244,10 @@ PacketHandler.prototype.handleMessage = function (message) {
                     break;
                 }
             }
-
+            if (message.charAt(0) == "/") {
+              this.gameServer.pm(this.socket.playerTracker.pID,"That is not a valid command!");
+              break;
+            }
             var date = new Date(),
                 hour = date.getHours();
 
