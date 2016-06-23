@@ -36,10 +36,11 @@ Commands.chat = {
     var msg = function(m) {
       gameServer.pm(player.pID,m);
     }
-    msg("======== Available Commands... =========");
-    msg("Color           | Change your chat color");
-    msg("Mute            | Mute/unmute chat");
-    msg("========================================");
+    msg("============ Available Commands... =============");
+    msg("Color [r] [b] [g]  | Change your chat color");
+    msg("Mute               | Mute/unmute chat");
+    msg("Pm [name] [msg]    | Privatly message a player");
+    msg("================================================");
   },
   color: require('./commands/colorchat.js'),
   mute: require('./commands/mute.js'),
