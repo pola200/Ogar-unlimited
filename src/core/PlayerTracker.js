@@ -66,6 +66,7 @@ module.exports = class PlayerTracker {
     this.oldname = "";
     this.norecombine = false;
     this.nodeAdditionQueue = [];
+    this.chatname = "";
     this.minioncontrol = false;
     this.premium = '';
     this.nodeDestroyQueue = [];
