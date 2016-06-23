@@ -27,6 +27,9 @@ Chat.prototype.build = function () {
     if (this.sender.cells && this.sender.cells.length > 0 && this.sender.color) {
         color = this.sender.color;
     }
+    if (this.sender.chatColor) {
+      color = this.sender.chatColor
+    }
     view.setUint8(0, 99);
     view.setUint8(1, 0); // flags for client; for future use
     // Send color
