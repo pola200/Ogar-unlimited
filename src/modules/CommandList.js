@@ -32,6 +32,14 @@ module.exports = Commands;
 
 // Commands
 Commands.chat = {
+  help: function(gameServer,player,split) {
+    var msg = function(m) {
+      gameServer.pm(player.pID,m);
+    }
+    msg("======== Available Commands... =========");
+    msg("Color           | Change your chat color");
+    msg("========================================");
+  },
   color: require('./commands/colorchat.js'),
   
   
