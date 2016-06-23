@@ -50,6 +50,7 @@ module.exports = class PlayerTracker {
     this.recombineinstant = false;
     this.mi = 0;
     this.spect;
+    this.chatColor;
     this.vskin = "";
     this.customspeed = 0;
     this.vname = "";
