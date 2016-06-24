@@ -148,7 +148,7 @@ this.name = name;
     this.ipCounts = [];
     this.minionleader = undefined;
     this.version = version;
-
+    this.chatNames = [];
     this.destroym = false;
     this.lleaderboard = false;
     this.topscore = 50;
@@ -466,6 +466,14 @@ startingFood() {
 
       function close(error) {
         self.ipcounts[this.socket.remoteAddress]--;
+       var names = this.socket.playerTracker.reservedNamesMap;
+       for (var i in names) {
+         var name = names[i];
+         for (var j in name) {
+           self.chatNames[i].slice(j,1);
+         }
+         
+       }
         // Log disconnections
         if (showlmsg == 1) {
           console.log("[" + self.name + "] A player with an IP of " + this.socket.remoteAddress + " left the game");
@@ -1055,10 +1063,38 @@ player.frozen = fro;
         y: pos.y
           };
         }
+        var cname = this.getChatName(player);
+        player.chatName = (cname) ? cname : "ERROR";
       }
 
 
-
+getChatName(player) {
+  var name = player.name;
+  var chatname = name;
+  if (!chatname || chatname == "") chatname = "An Unamed Cell";
+  if (player.reservedNames.indexOf(chatname) != -1) {
+    return chatname
+  }
+    if (!this.chatNames[name]) this.chatNames[name] = [];
+      var cn = this.chatNames[name];
+      for (var i = 0;0==0;i++){
+        var newname = (i==0) ? chatname : chatname + "_" + i;
+        if (cn.indexOf(i) == -1 || player.indexOf(newname) != -1) {
+          this.chatNames[name][i] = i;
+          if (player.reservedNames.indexOf(newname) == -1) player.reservedNames.push(newname);
+         if (!player.reservedNamesMap[name]) player.reservedNamesMap[name] = [];
+         player.reservedNamesMap[name][i] = i;
+          return newname;
+        }
+         
+        
+      }
+      
+    
+    return false;
+  
+  
+}
 
   getPremiumFromName(player) {
     if (player.name.substr(0, 1) == "<") {
