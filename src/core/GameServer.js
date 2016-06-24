@@ -1069,9 +1069,9 @@ player.frozen = fro;
 
 
 getChatName(player) {
-  var name = player.name;
+  var name = player.name.split(' ').join('_');
   var chatname = name;
-  if (!chatname || chatname == "") chatname = "An Unamed Cell";
+  if (!chatname || chatname == "") chatname = "An_Unamed_Cell";
   if (player.reservedNames.indexOf(chatname) != -1) {
     return chatname
   }
