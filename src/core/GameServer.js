@@ -1079,7 +1079,7 @@ getChatName(player) {
       var cn = this.chatNames[name];
       for (var i = 0;0==0;i++){
         var newname = (i==0) ? chatname : chatname + "_" + i;
-        if (cn.indexOf(i) == -1 || player.indexOf(newname) != -1) {
+        if (cn.indexOf(i) == -1 || player.reservedNames.indexOf(newname) != -1) {
           this.chatNames[name][i] = i;
           if (player.reservedNames.indexOf(newname) == -1) player.reservedNames.push(newname);
          if (!player.reservedNamesMap[name]) player.reservedNamesMap[name] = [];
