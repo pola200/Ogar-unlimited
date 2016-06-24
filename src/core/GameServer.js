@@ -272,9 +272,9 @@ getDist(x1, y1, x2, y2) { // Use Pythagoras theorem
     let to = {'x': x2, 'y': y2};
     return Physics.getDist(from, to);
   };
-pm(id, msg) {
-  
-  var packet = new Packet.Chat("[Console PM]", msg);
+pm(id, msg,tag) {
+  var t = (tag) ? tag : "[Console PM]";
+  var packet = new Packet.Chat(tag, msg);
             // Send to all clients (broadcast)
             for (var i = 0; i < this.clients.length; i++) {
               if (this.clients[i].playerTracker.pID == id) {
