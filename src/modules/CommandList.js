@@ -39,9 +39,10 @@ Commands.chat = {
     msg("============ Available Commands... =============");
     msg("Color [r] [b] [g]  | Change your chat color");
     msg("Mute               | Mute/unmute chat");
-    msg("Pm [name] [msg]    | Privatly message a player");
+    msg("Pm [chatname] [msg]| Privatly message a player");
     msg("================================================");
   },
+  pm: require('./commands/pm.js'),
   color: require('./commands/colorchat.js'),
   mute: require('./commands/mute.js'),
   
