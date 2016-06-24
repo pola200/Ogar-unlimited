@@ -313,7 +313,7 @@ PacketHandler.prototype.handleMessage = function (message) {
             var packet = new Packet.Chat(this.socket.playerTracker, message);
             // Send to all clients (broadcast)
             for (var i = 0; i < this.gameServer.clients.length; i++) {
-              if (!this.gameServer.clients[i].chat) continue;
+              if (!this.gameServer.clients[i].playerTracker.chat) continue;
                 this.gameServer.clients[i].sendPacket(packet);
             }
              } else {
