@@ -35,6 +35,7 @@ module.exports = class PlayerTracker {
     this.chatAllowed = true;
     this.chat = true;
     this.isAdmin = false;
+    this.reservedNamesMap = [];
     this.checkTick = 40;
     this.isBot = false;
     this.visible = true;
