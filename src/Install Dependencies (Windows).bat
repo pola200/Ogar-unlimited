@@ -1,4 +1,4 @@
-@echo off
+@echo on
 
 set NODE_VER="5.9.1"
 title ----- Install Dependencies -----
@@ -39,7 +39,7 @@ echo Dependencies already installed...
 echo.
 echo.
 
-set /p update= "Do you want to update? (Y/N)"
+set /p update= "y"
 cls
 if /I "!update!"=="n" (
 echo.
